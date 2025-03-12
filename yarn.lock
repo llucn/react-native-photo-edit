@@ -10527,6 +10527,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-native-image-picker@npm:^8.2.0":
+  version: 8.2.0
+  resolution: "react-native-image-picker@npm:8.2.0"
+  peerDependencies:
+    react: "*"
+    react-native: "*"
+  checksum: d261d4f0571b771c5d2d8a1d5c129743a4993318a454e5bf7850db0fa452d4d5da2215a2f2af3879cd38211b864b3ba77d1d09255ff1f43112b3dcf985d6c233
+  languageName: node
+  linkType: hard
+
 "react-native-photo-edit-example@workspace:example":
   version: 0.0.0-use.local
   resolution: "react-native-photo-edit-example@workspace:example"
@@ -10543,6 +10553,7 @@ __metadata:
     react: 19.0.0
     react-native: 0.78.0
     react-native-builder-bob: ^0.36.0
+    react-native-image-picker: ^8.2.0
   languageName: unknown
   linkType: soft
 
