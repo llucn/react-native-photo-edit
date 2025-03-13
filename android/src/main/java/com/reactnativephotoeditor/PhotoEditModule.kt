@@ -1,4 +1,4 @@
-package com.photoedit
+package com.reactnativephotoeditor
 
 import android.app.Activity
 import android.content.Intent
