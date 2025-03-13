@@ -1,22 +1,22 @@
-import { NativeModules, Platform } from 'react-native';
+import { NativeModules } from 'react-native';
 
-const LINKING_ERROR =
-  `The package 'react-native-photo-edit' doesn't seem to be linked. Make sure: \n\n` +
-  Platform.select({ ios: "- You have run 'pod install'\n", default: '' }) +
-  '- You rebuilt the app after installing the package\n' +
-  '- You are not using Expo Go\n';
+export type Options = {
+  path: String;
+  stickers: Array<String>;
+};
 
-const PhotoEdit = NativeModules.PhotoEdit
-  ? NativeModules.PhotoEdit
-  : new Proxy(
-      {},
-      {
-        get() {
-          throw new Error(LINKING_ERROR);
-        },
-      }
-    );
+export type ErrorCode =
+  | 'USER_CANCELLED'
+  | 'IMAGE_LOAD_FAILED'
+  | 'ACTIVITY_DOES_NOT_EXIST'
+  | 'FAILED_TO_SAVE_IMAGE'
+  | 'DONT_FIND_IMAGE'
+  | 'ERROR_UNKNOW';
 
-export function multiply(a: number, b: number): Promise<number> {
-  return PhotoEdit.multiply(a, b);
-}
+type PhotoEditorType = {
+  open(option: Options): Promise<String>;
+};
+
+const { PhotoEditor } = NativeModules;
+
+export default PhotoEditor as PhotoEditorType;
