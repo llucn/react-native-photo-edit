@@ -1,17 +1,28 @@
-import { multiply } from 'react-native-photo-edit';
-import { Text, View, StyleSheet } from 'react-native';
-import { useState, useEffect } from 'react';
+import { Button, Image, View, StyleSheet } from 'react-native';
+import { useState } from 'react';
+import { launchImageLibrary } from 'react-native-image-picker';
 
 export default function App() {
-  const [result, setResult] = useState<number | undefined>();
+  const [image, setImage] = useState<string | undefined>();
 
-  useEffect(() => {
-    multiply(3, 7).then(setResult);
-  }, []);
+  const pickImage = async () => {
+    // No permissions request is necessary for launching the image library
+    let result = await launchImageLibrary({
+      mediaType: 'photo',
+      quality: 1,
+    });
+
+    console.log(result);
+
+    if (!result.didCancel && result.assets) {
+      setImage(result.assets[0]?.uri);
+    }
+  };
 
   return (
     <View style={styles.container}>
-      <Text>Result: {result}</Text>
+      <Button title="Pick an image from camera roll" onPress={pickImage} />
+      {image && <Image source={{ uri: image }} style={styles.image} />}
     </View>
   );
 }
@@ -21,5 +32,9 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  image: {
+    width: 200,
+    height: 200,
   },
 });
